@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sunnyweather.android.R
 import androidx.core.widget.addTextChangedListener
 import android.content.Intent
+import com.sunnyweather.android.MainActivity
 import com.sunnyweather.android.ui.weather.WeatherActivity
 
 class PlaceFragment : Fragment() {
@@ -48,7 +49,7 @@ class PlaceFragment : Fragment() {
 
         if (viewModel.isPlaceSaved()) {
             val place = viewModel.getSavedPlace()
-            if (place != null) {
+            if (place != null && activity is MainActivity && viewModel.isPlaceSaved()) {
                 val intent = Intent(requireContext(), WeatherActivity::class.java).apply {
                     putExtra("location_lng", place.location.lng)
                     putExtra("location_lat", place.location.lat)
